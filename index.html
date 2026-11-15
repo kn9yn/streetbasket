@@ -1,0 +1,1102 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Street Basket - Bóng rổ đường phố</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&family=Sedgwick+Ave&family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap"
+    rel="stylesheet">
+  <style>
+    body {
+      background-color: #f8f9fa;
+      font-family: Arial, sans-serif;
+    }
+
+    .header-top {
+      background-color: #ffffff;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 10px 40px;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+
+    .logo img {
+      max-height: 70px;
+      display: block;
+    }
+
+    .search-box {
+      display: flex;
+      flex: 1;
+      max-width: 550px;
+      margin: 0 20px;
+    }
+
+    .search-box input {
+      width: 100%;
+      padding: 10px 15px;
+      border: 1px solid #ff0000;
+      border-right: none;
+      border-radius: 4px 0 0 4px;
+      outline: none;
+      font-size: 14px;
+    }
+
+    .search-box button {
+      background-color: #ff0000;
+      color: white;
+      border: 1px solid #ff0000;
+      padding: 0 20px;
+      border-radius: 0 4px 4px 0;
+      cursor: pointer;
+      font-size: 16px;
+      transition: background-color 0.2s;
+    }
+
+    .search-box button:hover {
+      background-color: #ff0000;
+    }
+
+    .user-actions .btn-auth {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      border: 1px solid #ff0000;
+      color: #ff0000;
+      background-color: transparent;
+      padding: 8px 16px;
+      border-radius: 4px;
+      font-weight: bold;
+      text-decoration: none;
+      font-size: 14px;
+      transition: all 0.2s;
+    }
+
+    .user-actions .btn-auth:hover {
+      background-color: #ff0000;
+      color: #ffffff;
+    }
+
+    .navbar {
+      background-color: #ff0000;
+    }
+
+    .nav-container {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 0 40px;
+    }
+
+    .nav-menu {
+      display: flex;
+      list-style: none;
+    }
+
+    .nav-menu li a {
+      display: block;
+      color: #ffffff;
+      text-decoration: none;
+      padding: 12px 20px;
+      font-weight: bold;
+      font-size: 18px;
+      transition: background-color 0.2s;
+    }
+
+    .nav-menu li a:hover {
+      background-color: #0066cc;
+    }
+
+    @media (max-width: 768px) {
+      .header-top {
+        flex-direction: column;
+        gap: 15px;
+      }
+
+      .search-box {
+        width: 100%;
+        max-width: 100%;
+        margin: 0;
+      }
+
+      .nav-menu {
+        flex-wrap: wrap;
+      }
+    }
+
+    .site-footer {
+      background-color: #ffffff;
+      padding-top: 40px;
+      color: #333333;
+    }
+
+    .footer-container {
+      max-width: 1300px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    .footer-columns {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 30px;
+      margin-bottom: 40px;
+    }
+
+    .footer-col h3 {
+      font-size: 16px;
+      font-weight: bold;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+      color: #000;
+      position: relative;
+      padding-bottom: 8px;
+    }
+
+    .footer-col h3::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 45px;
+      height: 3px;
+      background-color: #ff0000;
+    }
+
+    .footer-col ul {
+      list-style: none;
+    }
+
+    .footer-col ul li {
+      margin-bottom: 8px;
+      border-bottom: 1px solid #f0f0f0;
+      padding-bottom: 6px;
+    }
+
+    .footer-col ul li:last-child {
+      border-bottom: none;
+    }
+
+    .footer-col ul li a {
+      color: #666666;
+      text-decoration: none;
+      font-size: 13px;
+      transition: color 0.2s;
+    }
+
+    .footer-col ul li a:hover {
+      color: #ff0000;
+    }
+
+    .footer-middle {
+      display: flex;
+      align-items: flex-start;
+      gap: 60px;
+      padding-bottom: 40px;
+    }
+
+    .footer-logo {
+      flex: 0 0 200px;
+    }
+
+    .footer-logo img {
+      width: 100%;
+      max-width: 180px;
+      height: auto;
+      display: block;
+    }
+
+    .footer-company-info {
+      flex: 1;
+      font-size: 13px;
+      line-height: 1.8;
+      color: #444444;
+    }
+
+    .footer-company-info h4 {
+      font-size: 14px;
+      font-weight: bold;
+      color: #000000;
+      margin-bottom: 4px;
+      text-transform: uppercase;
+    }
+
+    .footer-company-info p {
+      margin-bottom: 4px;
+    }
+
+    .social-icons {
+      display: flex;
+      gap: 12px;
+      margin-top: 15px;
+      color: #ff0000;
+    }
+
+    .copyright-bar {
+      background-color: #ff0000;
+    }
+
+    @media (max-width: 900px) {
+      .footer-columns {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .footer-middle {
+        flex-direction: column;
+        gap: 20px;
+      }
+    }
+
+    @media (max-width: 550px) {
+      .footer-columns {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .product-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 16px;
+      max-width: 1300px;
+      margin: 0 auto;
+    }
+
+    .product-card {
+      display: flex;
+      flex-direction: column;
+      background: #fff;
+      text-decoration: none;
+      color: #333;
+    }
+
+    .product-image {
+      width: 100%;
+      aspect-ratio: 1 / 1;
+      border-radius: 12px;
+      padding: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 10px;
+      overflow: hidden;
+      background-color: #fff;
+      transition: all 0.3s ease;
+    }
+
+    .product-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.12);
+    }
+
+    .product-img-wrapper img,
+    .product-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      transition: transform 0.3s ease;
+    }
+
+    .product-card:hover .product-img-wrapper img,
+    .product-card:hover .product-image img {
+      transform: scale(1.05);
+
+    }
+
+    .product-info {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .product-title {
+      font-size: 13px;
+      line-height: 1.4;
+      color: #333333;
+      font-weight: 500;
+      display: -webkit-box;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      min-height: 36px;
+    }
+
+    .product-price-box {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 13px;
+      flex-wrap: wrap;
+    }
+
+    .old-price {
+      text-decoration: line-through;
+      color: #888888;
+      font-size: 11px;
+    }
+
+    .current-price {
+      font-weight: bold;
+      color: #000000;
+    }
+
+    /* Responsive cho màn hình nhỏ */
+    @media (max-width: 1100px) {
+      .product-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+
+    @media (max-width: 768px) {
+      .product-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 480px) {
+      .product-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .cta-collaborator {
+      background-color: #ff0000 !important;
+    }
+
+    .cta-collaborator input.form-control {
+      border-top-left-radius: 6px;
+      border-bottom-left-radius: 6px;
+    }
+
+    .cta-collaborator button.btn {
+      background-color: #ee4747;
+      border-top-right-radius: 6px;
+      border-bottom-right-radius: 6px;
+    }
+
+    .cta-collaborator button.btn:hover {
+      background-color: #ff5858;
+    }
+
+    .bi-heart:hover {
+      color: red;
+    }
+
+    .back-to-top-left {
+      position: fixed;
+      bottom: 25px;
+      left: 25px;
+      z-index: 9999;
+      width: 45px;
+      height: 45px;
+      background-color: #6c757d;
+      color: #ffffff;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+      font-size: 18px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+      transition: all 0.3s ease-in-out;
+    }
+
+    .back-to-top-left:hover {
+      background-color: #5a6268;
+      color: #ffffff;
+      transform: translateY(-3px);
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <div class="header-top">
+      <div class="logo">
+        <a href="#">
+          <img src="images/logo2.png" alt="Street Basket Logo">
+        </a>
+      </div>
+      <div class="search-box">
+        <input type="text" placeholder="Tìm kiếm sản phẩm, thương hiệu...">
+        <button type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
+      </div>
+      <div class="cart-action">
+        <a href="#" class="d-flex align-items-center text-decoration-none gap-2">
+          <img src="images/giỏ hàng.svg" alt="Giỏ hàng" style="width: 28px; height: 28px;">
+          <span class="fw-bold text-dark">Giỏ hàng</span>
+        </a>
+      </div>
+    </div>
+    <nav class="navbar navbar-expand-lg p-3">
+      <div class="container">
+        <a class="navbar-brand text-white fs-1 fw-bold" href="#"></a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+          aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav me-auto">
+            <li class="nav-item">
+              <a class="nav-link active text-white fs-5 px-3" aria-current="page" href="index.html">Trang chủ</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link text-white fs-5 px-3" href="#">Sale</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link text-white fs-5 px-3" href="#">Yêu thích</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link text-white fs-5 px-3" href="#">Liên hệ</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active text-white fs-5 px-3" href="#">Về chúng tôi</a>
+            </li>
+          </ul>
+          <!-- Nút Đăng nhập / Đăng ký nằm bên phải trong nav đỏ -->
+          <div class="user-actions ms-auto">
+            <a href="login.html"
+              class="btn-auth text-white text-decoration-none px-3 py-2 border rounded d-flex align-items-center gap-2">
+              <i class="fa-regular fa-user"></i>
+              <span>Đăng Nhập / Đăng Ký</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </nav>
+  </header>
+  <main>
+    <div id="carouselExample" class="carousel slide mt-4">
+      <div class="carousel-inner">
+        <div class="carousel-item active text-center">
+          <img src="images/anh1.png" width="1910">
+        </div>
+        <div class="carousel-item text-center">
+          <img src="images/anh2.png" width="1910">
+        </div>
+      </div>
+      <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+      </button>
+      <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+      </button>
+    </div>
+    <div class="container my-4" style="max-width: 1350px;">
+      <div class="title-divider mb-4">
+        <button
+          class="btn btn-outline-secondary btn-sm title-divider-btn px-4 py-2 text-dark fw-bold text-uppercase rounded-0 shadow-sm">
+          <i class="bi bi-chevron-down me-1"></i> SẢN PHẨM MỚI
+        </button>
+      </div>
+      <div class=" bg-white py-5 row row-cols-1 row-cols-sm-2 row-cols-md-4 g-3">
+
+        <div class="col">
+          <a href="trangchitiet.html" class="text-decoration-none text-dark product-card d-block h-100">
+            <div class="product-img-wrapper position-relative bg-light text-center p-3">
+              <img src="images/sp1.webp" class="img-fluid" alt="Giày bóng rổ nữ Outdoor PEAK Taichi Ranger 3.0 DA610178">
+              <button type="button"
+                class="btn btn-light position-absolute bottom-0 end-0 m-2 rounded-circle p-2 shadow-sm d-flex align-items-center justify-content-center"
+                style="width: 36px; height: 36px;" title="Yêu thích">
+                <i class="bi bi-heart"></i>
+              </button>
+            </div>
+            <div class="pt-2">
+              <h3 class="fs-6 fw-normal text-secondary product-title mb-1 p-1">
+                Giày bóng rổ nữ Outdoor PEAK Taichi Ranger 3.0 DA610178
+              </h3>
+              <div class="d-flex align-items-center gap-2 mb-2">
+                <span class="fw-bold text-danger fs-6 p-1">1,890,000đ</span>
+              </div>
+            </div>
+          </a>
+        </div>
+
+        <div class="col">
+          <a href="#" class="text-decoration-none text-dark product-card d-block h-100">
+            <div class="product-img-wrapper position-relative bg-light text-center p-3">
+              <img src="images/sp2.webp" class="img-fluid"
+                alt="Giày bóng rổ PEAK 3D Basketball KID Taichi Wiggins 4.0 EKT63030A">
+              <button type="button"
+                class="btn btn-light position-absolute bottom-0 end-0 m-2 rounded-circle p-2 shadow-sm d-flex align-items-center justify-content-center"
+                style="width: 36px; height: 36px;" title="Yêu thích">
+                <i class="bi bi-heart"></i>
+              </button>
+            </div>
+            <div class="pt-2">
+              <h3 class="fs-6 fw-normal text-secondary product-title mb-1 p-1">
+                Giày bóng rổ PEAK 3D Basketball KID Taichi Wiggins 4.0 EKT63030A
+              </h3>
+              <div class="d-flex align-items-center gap-2 mb-2">
+                <span class="fw-bold text-danger fs-6 p-1">2,190,000đ</span>
+              </div>
+            </div>
+          </a>
+        </div>
+
+        <div class="col">
+          <a href="#" class="text-decoration-none text-dark product-card d-block h-100">
+            <div class="product-img-wrapper position-relative bg-light text-center p-3">
+              <img src="images/sp3.webp" class="img-fluid" alt="Quần Short Running 2 Lớp Nữ PEAK FW3262152">
+              <span class="badge bg-danger position-absolute top-0 end-0 m-2 px-2 py-1">-60%</span>
+              <button type="button"
+                class="btn btn-light position-absolute bottom-0 end-0 m-2 rounded-circle p-2 shadow-sm d-flex align-items-center justify-content-center"
+                style="width: 36px; height: 36px;" title="Yêu thích">
+                <i class="bi bi-heart"></i>
+              </button>
+            </div>
+
+            <div class="pt-2">
+              <h3 class="fs-6 fw-normal text-secondary product-title mb-1 p-1">
+                Quần Short Running 2 Lớp Nữ PEAK FW3262152
+              </h3>
+              <div class="d-flex align-items-center gap-2 mb-2">
+                <span class="fw-bold text-danger fs-6 p-1">356,000đ</span>
+                <span class="text-muted text-decoration-line-through small">890,000đ</span>
+              </div>
+            </div>
+          </a>
+        </div>
+        <div class="col">
+          <a href="#" class="text-decoration-none text-dark product-card d-block h-100">
+            <div class="product-img-wrapper position-relative bg-light text-center p-3">
+              <img src="images/sp4.webp" class="img-fluid" alt="Tất Thể Thao Cổ Trung PEAK W3254221">
+              <button type="button"
+                class="btn btn-light position-absolute bottom-0 end-0 m-2 rounded-circle p-2 shadow-sm d-flex align-items-center justify-content-center"
+                style="width: 36px; height: 36px;" title="Yêu thích">
+                <i class="bi bi-heart"></i>
+              </button>
+            </div>
+            <div class="pt-2">
+              <h3 class="fs-6 fw-normal text-secondary product-title mb-1 p-1">
+                Tất Thể Thao Cổ Trung PEAK W3254221
+              </h3>
+              <div class="d-flex align-items-center gap-2 mb-2">
+                <span class="fw-bold text-danger fs-6 p-1">135,000đ</span>
+              </div>
+            </div>
+          </a>
+        </div>
+
+      </div>
+      <div class=" bg-white py-5 row row-cols-1 row-cols-sm-2 row-cols-md-4 g-3">
+
+        <div class="col">
+          <a href="#" class="text-decoration-none text-dark product-card d-block h-100">
+            <div class="product-img-wrapper position-relative bg-light text-center p-3">
+              <img src="images/sp5.webp" class="img-fluid" alt="Quả Bóng Rổ Da PU Size #7 PEAK Q1242120">
+              <span class="badge bg-danger position-absolute top-0 end-0 m-2 px-2 py-1">-30%</span>
+              <button type="button"
+                class="btn btn-light position-absolute bottom-0 end-0 m-2 rounded-circle p-2 shadow-sm d-flex align-items-center justify-content-center"
+                style="width: 36px; height: 36px;" title="Yêu thích">
+                <i class="bi bi-heart"></i>
+              </button>
+            </div>
+            <div class="pt-2">
+              <h3 class="fs-6 fw-normal text-secondary product-title mb-1 p-1">
+                Quả Bóng Rổ Da PU Size #7 PEAK Q1242120
+              </h3>
+              <div class="d-flex align-items-center gap-2 mb-2">
+                <span class="fw-bold text-danger fs-6 p-1">693,000đ</span>
+                <span class="text-muted text-decoration-line-through small">990,000đ</span>
+              </div>
+            </div>
+          </a>
+        </div>
+
+        <div class="col">
+          <a href="#" class="text-decoration-none text-dark product-card d-block h-100">
+            <div class="product-img-wrapper position-relative bg-light text-center p-3">
+              <img src="images/sp6.webp" class="img-fluid" alt="Túi Trống PEAK B5232010">
+              <span class="badge bg-danger position-absolute top-0 end-0 m-2 px-2 py-1">-50%</span>
+              <button type="button"
+                class="btn btn-light position-absolute bottom-0 end-0 m-2 rounded-circle p-2 shadow-sm d-flex align-items-center justify-content-center"
+                style="width: 36px; height: 36px;" title="Yêu thích">
+                <i class="bi bi-heart"></i>
+              </button>
+            </div>
+            <div class="pt-2">
+              <h3 class="fs-6 fw-normal text-secondary product-title mb-1 p-1">
+                Túi Trống PEAK B5232010
+              </h3>
+              <div class="d-flex align-items-center gap-2 mb-2">
+                <span class="fw-bold text-danger fs-6 p-1">345,000đ</span>
+                <span class="text-muted text-decoration-line-through small">690,000đ</span>
+              </div>
+            </div>
+          </a>
+        </div>
+
+        <div class="col">
+          <a href="#" class="text-decoration-none text-dark product-card d-block h-100">
+            <div class="product-img-wrapper position-relative bg-light text-center p-3">
+              <img src="images/sp7.webp" class="img-fluid" alt="Giày Bóng rổ nữ PEAK Taichi EXT262798I">
+              <span class="badge bg-danger position-absolute top-0 end-0 m-2 px-2 py-1">-30%</span>
+              <button type="button"
+                class="btn btn-light position-absolute bottom-0 end-0 m-2 rounded-circle p-2 shadow-sm d-flex align-items-center justify-content-center"
+                style="width: 36px; height: 36px;" title="Yêu thích">
+                <i class="bi bi-heart"></i>
+              </button>
+            </div>
+            <div class="pt-2">
+              <h3 class="fs-6 fw-normal text-secondary product-title mb-1 p-1">
+                Giày Bóng rổ nữ PEAK Taichi EXT262798I
+              </h3>
+              <div class="d-flex align-items-center gap-2 mb-2">
+                <span class="fw-bold text-danger fs-6 p-1">1,253,000đ</span>
+                <span class="text-muted text-decoration-line-through small">1,790,000đ</span>
+              </div>
+            </div>
+          </a>
+        </div>
+
+        <div class="col">
+          <a href="#" class="text-decoration-none text-dark product-card d-block h-100">
+            <div class="product-img-wrapper position-relative bg-light text-center p-3">
+              <img src="images/sp8.webp" class="img-fluid"
+                alt="Giày bóng rổ PEAK Basketball KID Taichi Bullfighting 2.0 EK63020A">
+              <button type="button"
+                class="btn btn-light position-absolute bottom-0 end-0 m-2 rounded-circle p-2 shadow-sm d-flex align-items-center justify-content-center"
+                style="width: 36px; height: 36px;" title="Yêu thích">
+                <i class="bi bi-heart"></i>
+              </button>
+            </div>
+            <div class="pt-2">
+              <h3 class="fs-6 fw-normal text-secondary product-title mb-1 p-1">
+                Giày bóng rổ PEAK Basketball KID Taichi Bullfighting 2.0 EK63020A
+              </h3>
+              <div class="d-flex align-items-center gap-2 mb-2">
+                <span class="fw-bold text-danger fs-6 p-1">1,790,000đ</span>
+              </div>
+            </div>
+          </a>
+        </div>
+
+      </div>
+
+
+      <div class="container my-4" style="max-width: 1350px;">
+        <div class="title-divider mb-4">
+          <button
+            class="btn btn-outline-secondary btn-sm title-divider-btn px-4 py-2 text-dark fw-bold text-uppercase rounded-0 shadow-sm">
+            <i class="bi bi-chevron-down me-1"></i> QUẢ BÓNG RỔ
+          </button>
+        </div>
+        <div class=" bg-white py-5 row row-cols-1 row-cols-sm-2 row-cols-md-4 g-3">
+
+          <div class="col">
+            <a href="#" class="text-decoration-none text-dark product-card d-block h-100">
+              <div class="product-img-wrapper position-relative bg-light text-center p-3">
+                <img src="images/bong1.webp" class="img-fluid" alt="Quả bóng rổ da PU Malik Monk size 7 Q1261120">
+                <span class="badge bg-danger position-absolute top-0 end-0 m-2 px-2 py-1">-10%</span>
+                <button type="button"
+                  class="btn btn-light position-absolute bottom-0 end-0 m-2 rounded-circle p-2 shadow-sm d-flex align-items-center justify-content-center"
+                  style="width: 36px; height: 36px;" title="Yêu thích">
+                  <i class="bi bi-heart"></i>
+                </button>
+              </div>
+              <div class="pt-2">
+                <h3 class="fs-6 fw-normal text-secondary product-title mb-1 p-1">
+                  Quả bóng rổ da PU Malik Monk size 7 Q1261120
+                </h3>
+                <div class="d-flex align-items-center gap-2 mb-2">
+                  <span class="fw-bold text-danger fs-6 p-1">801,000đ</span>
+                  <span class="text-muted text-decoration-line-through small">890,000đ</span>
+                </div>
+              </div>
+            </a>
+          </div>
+
+          <div class="col">
+            <a href="#" class="text-decoration-none text-dark product-card d-block h-100">
+              <div class="product-img-wrapper position-relative bg-light text-center p-3">
+                <img src="images/bong2.png" class="img-fluid" alt="Quả Bóng Rổ PEAK PU Size 7 Q112070">
+                <span class="badge bg-danger position-absolute top-0 end-0 m-2 px-2 py-1">-27%</span>
+                <button type="button"
+                  class="btn btn-light position-absolute bottom-0 end-0 m-2 rounded-circle p-2 shadow-sm d-flex align-items-center justify-content-center"
+                  style="width: 36px; height: 36px;" title="Yêu thích">
+                  <i class="bi bi-heart"></i>
+                </button>
+              </div>
+              <div class="pt-2">
+                <h3 class="fs-6 fw-normal text-secondary product-title mb-1 p-1">
+                  Quả Bóng Rổ PEAK PU Size 7 Q112070
+                </h3>
+                <div class="d-flex align-items-center gap-2 mb-2">
+                  <span class="fw-bold text-danger fs-6 p-1">510,000đ</span>
+                  <span class="text-muted text-decoration-line-through small">690,000đ</span>
+                </div>
+              </div>
+            </a>
+          </div>
+
+          <div class="col">
+            <a href="#" class="text-decoration-none text-dark product-card d-block h-100">
+              <div class="product-img-wrapper position-relative bg-light text-center p-3">
+                <img src="images/bong3.webp" class="img-fluid" alt="Quả Bóng Rổ PEAK Slam Dunk size 5 QW59080">
+                <span class="badge bg-danger position-absolute top-0 end-0 m-2 px-2 py-1">-11%</span>
+                <button type="button"
+                  class="btn btn-light position-absolute bottom-0 end-0 m-2 rounded-circle p-2 shadow-sm d-flex align-items-center justify-content-center"
+                  style="width: 36px; height: 36px;" title="Yêu thích">
+                  <i class="bi bi-heart"></i>
+                </button>
+              </div>
+              <div class="pt-2">
+                <h3 class="fs-6 fw-normal text-secondary product-title mb-1 p-1">
+                  Quả Bóng Rổ PEAK Slam Dunk size 5 QW59080
+                </h3>
+                <div class="d-flex align-items-center gap-2 mb-2">
+                  <span class="fw-bold text-danger fs-6 p-1">349,000đ</span>
+                  <span class="text-muted text-decoration-line-through small">390,000đ</span>
+                </div>
+              </div>
+            </a>
+          </div>
+
+          <div class="col">
+            <a href="#" class="text-decoration-none text-dark product-card d-block h-100">
+              <div class="product-img-wrapper position-relative bg-light text-center p-3">
+                <img src="images/bong4.webp" class="img-fluid" alt="Quả Bóng Rổ Da PU PEAK QW49128 - Classic Tricolor">
+                <span class="badge bg-danger position-absolute top-0 end-0 m-2 px-2 py-1">-30%</span>
+                <button type="button"
+                  class="btn btn-light position-absolute bottom-0 end-0 m-2 rounded-circle p-2 shadow-sm d-flex align-items-center justify-content-center"
+                  style="width: 36px; height: 36px;" title="Yêu thích">
+                  <i class="bi bi-heart"></i>
+                </button>
+              </div>
+              <div class="pt-2">
+                <h3 class="fs-6 fw-normal text-secondary product-title mb-1 p-1">
+                  Quả Bóng Rổ Da PU PEAK QW49128 - Classic Tricolor
+                </h3>
+                <div class="d-flex align-items-center gap-2 mb-2">
+                  <span class="fw-bold text-danger fs-6 p-1">483,000đ</span>
+                  <span class="text-muted text-decoration-line-through small">690,000đ</span>
+                </div>
+              </div>
+            </a>
+          </div>
+
+        </div>
+
+        <div class="container my-4" style="max-width: 1350px;">
+          <div class="title-divider mb-4">
+            <button
+              class="btn btn-outline-secondary btn-sm title-divider-btn px-4 py-2 text-dark fw-bold text-uppercase rounded-0 shadow-sm">
+              <i class="bi bi-chevron-down me-1"></i> GIÀY BÓNG RỔ
+            </button>
+          </div>
+          <div class=" bg-white py-5 row row-cols-1 row-cols-sm-2 row-cols-md-4 g-3">
+
+            <div class="col">
+              <a href="#" class="text-decoration-none text-dark product-card d-block h-100">
+                <div class="product-img-wrapper position-relative bg-light text-center p-3">
+                  <img src="images/giay1.webp" class="img-fluid" alt="Giày bóng rổ Nam PEAK Taichi EXT263937A">
+                  <button type="button"
+                    class="btn btn-light position-absolute bottom-0 end-0 m-2 rounded-circle p-2 shadow-sm d-flex align-items-center justify-content-center"
+                    style="width: 36px; height: 36px;" title="Yêu thích">
+                    <i class="bi bi-heart"></i>
+                  </button>
+                </div>
+                <div class="pt-2">
+                  <h3 class="fs-6 fw-normal text-secondary product-title mb-1 p-1">
+                    Giày bóng rổ Nam PEAK Taichi EXT263937A
+                  </h3>
+                  <div class="d-flex align-items-center gap-2 mb-2">
+                    <span class="fw-bold text-danger fs-6 p-1">1,790,000đ</span>
+                  </div>
+                </div>
+              </a>
+            </div>
+
+            <div class="col">
+              <a href="#" class="text-decoration-none text-dark product-card d-block h-100">
+                <div class="product-img-wrapper position-relative bg-light text-center p-3">
+                  <img src="images/giay2.webp" class="img-fluid" alt="Giày bóng rổ Nam PEAK Taichi Cool Free ET59255A">
+                  <button type="button"
+                    class="btn btn-light position-absolute bottom-0 end-0 m-2 rounded-circle p-2 shadow-sm d-flex align-items-center justify-content-center"
+                    style="width: 36px; height: 36px;" title="Yêu thích">
+                    <i class="bi bi-heart"></i>
+                  </button>
+                </div>
+                <div class="pt-2">
+                  <h3 class="fs-6 fw-normal text-secondary product-title mb-1 p-1">
+                    Giày bóng rổ Nam PEAK Taichi Cool Free ET59255A
+                  </h3>
+                  <div class="d-flex align-items-center gap-2 mb-2">
+                    <span class="fw-bold text-danger fs-6 p-1">2,190,000đ</span>
+                  </div>
+                </div>
+              </a>
+            </div>
+
+            <div class="col">
+              <a href="#" class="text-decoration-none text-dark product-card d-block h-100">
+                <div class="product-img-wrapper position-relative bg-light text-center p-3">
+                  <img src="images/giay3.webp" class="img-fluid" alt="Giày bóng rổ Nam PEAK Taichi Big Triangle 5.0 ET261051A">
+                  <span class="badge bg-danger position-absolute top-0 end-0 m-2 px-2 py-1">-10%</span>
+                  <button type="button"
+                    class="btn btn-light position-absolute bottom-0 end-0 m-2 rounded-circle p-2 shadow-sm d-flex align-items-center justify-content-center"
+                    style="width: 36px; height: 36px;" title="Yêu thích">
+                    <i class="bi bi-heart"></i>
+                  </button>
+                </div>
+                <div class="pt-2">
+                  <h3 class="fs-6 fw-normal text-secondary product-title mb-1 p-1">
+                    Giày bóng rổ Nam PEAK Taichi Big Triangle 5.0 ET261051A
+                  </h3>
+                  <div class="d-flex align-items-center gap-2 mb-2">
+                    <span class="fw-bold text-danger fs-6 p-1">2,061,000đ</span>
+                    <span class="text-muted text-decoration-line-through small">2,290,000đ</span>
+                  </div>
+                </div>
+              </a>
+            </div>
+
+            <div class="col">
+              <a href="#" class="text-decoration-none text-dark product-card d-block h-100">
+                <div class="product-img-wrapper position-relative bg-light text-center p-3">
+                  <img src="images/giay4.webp" class="img-fluid"
+                    alt="Giày Pickleball / Bóng Rổ nam Outdoor PEAK Taichi Ranger 3.0...">
+                  <span class="badge bg-danger position-absolute top-0 end-0 m-2 px-2 py-1">-22%</span>
+                  <button type="button"
+                    class="btn btn-light position-absolute bottom-0 end-0 m-2 rounded-circle p-2 shadow-sm d-flex align-items-center justify-content-center"
+                    style="width: 36px; height: 36px;" title="Yêu thích">
+                    <i class="bi bi-heart"></i>
+                  </button>
+                </div>
+                <div class="pt-2">
+                  <h3 class="fs-6 fw-normal text-secondary product-title mb-1 p-1">
+                    Giày Pickleball / Bóng Rổ nam Outdoor PEAK Taichi Ranger 3.0...
+                  </h3>
+                  <div class="d-flex align-items-center gap-2 mb-2">
+                    <span class="fw-bold text-danger fs-6 p-1">1,490,000đ</span>
+                    <span class="text-muted text-decoration-line-through small">1,890,000đ</span>
+                  </div>
+                </div>
+              </a>
+            </div>
+
+          </div>
+
+          <div class="container my-4" style="max-width: 1350px;">
+            <div class="title-divider mb-4">
+              <button
+                class="btn btn-outline-secondary btn-sm title-divider-btn px-4 py-2 text-dark fw-bold text-uppercase rounded-0 shadow-sm">
+                <i class="bi bi-chevron-down me-1"></i> PHỤ KIỆN BÓNG RỔ
+              </button>
+            </div>
+            <div class=" bg-white py-5 row row-cols-1 row-cols-sm-2 row-cols-md-4 g-3">
+
+              <div class="col">
+                <a href="#" class="text-decoration-none text-dark product-card d-block h-100">
+                  <div class="product-img-wrapper position-relative bg-light text-center p-3">
+                    <img src="images/pk1.webp" class="img-fluid" alt="Áo Phông Thể Thao Nam PEAK P-ICE FW6253101A">
+                    <span class="badge bg-danger position-absolute top-0 end-0 m-2 px-2 py-1">-60%</span>
+                    <button type="button"
+                      class="btn btn-light position-absolute bottom-0 end-0 m-2 rounded-circle p-2 shadow-sm d-flex align-items-center justify-content-center"
+                      style="width: 36px; height: 36px;" title="Yêu thích">
+                      <i class="bi bi-heart"></i>
+                    </button>
+                  </div>
+                  <div class="pt-2">
+                    <h3 class="fs-6 fw-normal text-secondary product-title mb-1 p-1">
+                      Áo Phông Thể Thao Nam PEAK P-ICE FW6253101
+                    </h3>
+                    <div class="d-flex align-items-center gap-2 mb-2">
+                      <span class="fw-bold text-danger fs-6 p-1">236,000đ</span>
+                      <span class="text-muted text-decoration-line-through small">590,000đ</span>
+                    </div>
+                  </div>
+                </a>
+              </div>
+
+              <div class="col">
+                <a href="#" class="text-decoration-none text-dark product-card d-block h-100">
+                  <div class="product-img-wrapper position-relative bg-light text-center p-3">
+                    <img src="images/pk2.webp" class="img-fluid" alt="Áo Khoác Bộ Nỉ Khóa Nam PEAK FWA253007">
+                    <span class="badge bg-danger position-absolute top-0 end-0 m-2 px-2 py-1">-60%</span>
+                    <button type="button"
+                      class="btn btn-light position-absolute bottom-0 end-0 m-2 rounded-circle p-2 shadow-sm d-flex align-items-center justify-content-center"
+                      style="width: 36px; height: 36px;" title="Yêu thích">
+                      <i class="bi bi-heart"></i>
+                    </button>
+                  </div>
+                  <div class="pt-2">
+                    <h3 class="fs-6 fw-normal text-secondary product-title mb-1 p-1">
+                      Áo Khoác Bộ Nỉ Khóa Nam PEAK FWA253007
+                    </h3>
+                    <div class="d-flex align-items-center gap-2 mb-2">
+                      <span class="fw-bold text-danger fs-6 p-1">716,000đ</span>
+                      <span class="text-muted text-decoration-line-through small">1,790,000đ</span>
+                    </div>
+                  </div>
+                </a>
+              </div>
+
+              <div class="col">
+                <a href="#" class="text-decoration-none text-dark product-card d-block h-100">
+                  <div class="product-img-wrapper position-relative bg-light text-center p-3">
+                    <img src="images/pk3.webp" class="img-fluid" alt="Quần Short Nỉ Nữ PEAK FW3253072">
+                    <span class="badge bg-danger position-absolute top-0 end-0 m-2 px-2 py-1">-50%</span>
+                    <button type="button"
+                      class="btn btn-light position-absolute bottom-0 end-0 m-2 rounded-circle p-2 shadow-sm d-flex align-items-center justify-content-center"
+                      style="width: 36px; height: 36px;" title="Yêu thích">
+                      <i class="bi bi-heart"></i>
+                    </button>
+                  </div>
+                  <div class="pt-2">
+                    <h3 class="fs-6 fw-normal text-secondary product-title mb-1 p-1">
+                      Quần Short Nỉ Nữ PEAK FW3253072
+                    </h3>
+                    <div class="d-flex align-items-center gap-2 mb-2">
+                      <span class="fw-bold text-danger fs-6 p-1">275,000đ</span>
+                      <span class="text-muted text-decoration-line-through small">550,000đ</span>
+                    </div>
+                  </div>
+                </a>
+              </div>
+
+              <div class="col">
+                <a href="#" class="text-decoration-none text-dark product-card d-block h-100">
+                  <div class="product-img-wrapper position-relative bg-light text-center p-3">
+                    <img src="images/pk4.webp" class="img-fluid" alt="Mũ lưỡi trai thể thao PEAK M1253070">
+                    <span class="badge bg-danger position-absolute top-0 end-0 m-2 px-2 py-1">-60%</span>
+                    <button type="button"
+                      class="btn btn-light position-absolute bottom-0 end-0 m-2 rounded-circle p-2 shadow-sm d-flex align-items-center justify-content-center"
+                      style="width: 36px; height: 36px;" title="Yêu thích">
+                      <i class="bi bi-heart"></i>
+                    </button>
+                  </div>
+                  <div class="pt-2">
+                    <h3 class="fs-6 fw-normal text-secondary product-title mb-1 p-1">
+                      Mũ lưỡi trai thể thao PEAK M1253070
+                    </h3>
+                    <div class="d-flex align-items-center gap-2 mb-2">
+                      <span class="fw-bold text-danger fs-6 p-1">260,000đ</span>
+                      <span class="text-muted text-decoration-line-through small">650,000đ</span>
+                    </div>
+                  </div>
+                </a>
+              </div>
+
+            </div>
+  </main>
+  <section class="cta-collaborator py-4 bg-primary text-white text-center">
+    <div class="container">
+      <h4 class="fw-bold mb-3">ĐĂNG KÝ ĐỂ NHẬN ĐƯỢC THÔNG TIN MỚI NHẤT TỪ CỬA HÀNG</h4>
+      <div class="row justify-content-center">
+        <div class="col-md-6">
+          <form class="input-group">
+            <input type="tel" class="form-control py-2 border-0 shadow-none"
+              placeholder="Nhập số điện thoại hoặc zalo của bạn">
+            <button class="btn btn-white text-white shadow btn-outline-light px-4 fw-bold" type="submit">GỬI</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+  <a href="#" id="backToTopBtn" class="back-to-top-left" title="Lên đầu trang">
+    <i class="fa-solid fa-arrow-rotate-left"></i>
+  </a>
+  <footer class="site-footer">
+    <div class="footer-container">
+      <div class="footer-columns">
+        <div class="footer-col">
+          <h3>VỀ STREET BASKET</h3>
+          <ul>
+            <li><a href="#">Giới thiệu</a></li>
+            <li><a href="#">Hệ thống cửa hàng</a></li>
+            <li><a href="#">Liên hệ</a></li>
+            <li><a href="#">Founder</a></li>
+            <li><a href="#">Author</a></li>
+            <li><a href="#">Tin tức</a></li>
+            <li><a href="#">Tuyển dụng</a></li>
+            <li><a href="#">Sitemap</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h3>HƯỚNG DẪN MUA HÀNG</h3>
+          <ul>
+            <li><a href="#">Hướng dẫn thanh toán</a></li>
+            <li><a href="#">Hướng dẫn mua hàng online</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h3>CHÍNH SÁCH CHUNG</h3>
+          <ul>
+            <li><a href="#">Chính sách dữ liệu</a></li>
+            <li><a href="#">Chính sách bảo mật</a></li>
+            <li><a href="#">Chính sách kinh doanh</a></li>
+            <li><a href="#">Chính sách vận chuyển</a></li>
+            <li><a href="#">Chính sách bảo hành</a></li>
+            <li><a href="#">Chính sách đổi trả</a></li>
+            <li><a href="#">Chính sách kiểm hàng</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h3>SẢN PHẨM NỔI BẬT</h3>
+          <ul>
+            <li><a href="#">Quả bóng rổ</a></li>
+            <li><a href="#">Giày bóng rổ</a></li>
+            <li><a href="#">Quần áo bóng rổ</a></li>
+            <li><a href="#">Quần áo bóng rổ nữ</a></li>
+            <li><a href="#">Áo phông bóng rổ</a></li>
+            <li><a href="#">Áo ba lỗ bóng rổ</a></li>
+            <li><a href="#">Giày bóng rổ nữ</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-middle">
+        <div class="footer-logo">
+          <img src="images/logo1.png" alt="Street Basket Logo">
+        </div>
+
+        <div class="footer-company-info">
+          <h4>CÔNG TY TNHH MỘT THÀNH VIÊN STREET BASKET</h4>
+          <p>Cấp ngày: 09/09/2026 tại Thành phố Đà Nẵng</p>
+          <p>Trụ sở: Phường Hòa Xuân, Thành phố Đà Nẵng</p>
+
+          <h4 style="margin-top: 10px;">Thương hiệu Street Basket</h4>
+          <p>Email: ngdinhkhoinguyen9911@gmail.com</p>
+          <p>Tel: 0931992011</p>
+          <div class="social-icons">
+            <i class="bi bi-facebook me-3 fs-5"></i>
+            <i class="bi bi-youtube me-3 fs-5"></i>
+            <i class="bi bi-instagram me-3 fs-5"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="copyright-bar text-center text-white py-3">
+      © Sản phẩm cuối khóa của học viên Nguyễn Đình Khôi Nguyên.
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+    crossorigin="anonymous"></script>
+  <script>
+    document.getElementById('backToTopBtn').addEventListener('click', function (e) {
+      e.preventDefault();
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
+    });
+  </script>
+</body>
+
+</html>

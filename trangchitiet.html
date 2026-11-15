@@ -1,0 +1,840 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Street Basket - Bóng rổ đường phố</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&family=Sedgwick+Ave&family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap"
+    rel="stylesheet">
+  <style>
+    .header-top {
+      background-color: #ffffff;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 10px 40px;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+
+    .logo img {
+      max-height: 70px;
+      display: block;
+    }
+
+    .search-box {
+      display: flex;
+      flex: 1;
+      max-width: 550px;
+      margin: 0 20px;
+    }
+
+    .search-box input {
+      width: 100%;
+      padding: 10px 15px;
+      border: 1px solid #ff0000;
+      border-right: none;
+      border-radius: 4px 0 0 4px;
+      outline: none;
+      font-size: 14px;
+    }
+
+    .search-box button {
+      background-color: #ff0000;
+      color: white;
+      border: 1px solid #ff0000;
+      padding: 0 20px;
+      border-radius: 0 4px 4px 0;
+      cursor: pointer;
+      font-size: 16px;
+      transition: background-color 0.2s;
+    }
+
+    .search-box button:hover {
+      background-color: #ff0000;
+    }
+
+    .user-actions .btn-auth {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      border: 1px solid #ff0000;
+      color: #ff0000;
+      background-color: transparent;
+      padding: 8px 16px;
+      border-radius: 4px;
+      font-weight: bold;
+      text-decoration: none;
+      font-size: 14px;
+      transition: all 0.2s;
+    }
+
+    .user-actions .btn-auth:hover {
+      background-color: #0088ff;
+      color: #ffffff;
+    }
+
+    .navbar {
+      background-color: #ff0000;
+    }
+
+    .nav-container {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 0 40px;
+    }
+
+    .nav-menu {
+      display: flex;
+      list-style: none;
+    }
+
+    .nav-menu li a {
+      display: block;
+      color: #ffffff;
+      text-decoration: none;
+      padding: 12px 20px;
+      font-weight: bold;
+      font-size: 15px;
+      transition: background-color 0.2s;
+    }
+
+    .nav-menu li a:hover {
+      background-color: #0066cc;
+    }
+
+    @media (max-width: 768px) {
+      .header-top {
+        flex-direction: column;
+        gap: 15px;
+      }
+
+      .search-box {
+        width: 100%;
+        max-width: 100%;
+        margin: 0;
+      }
+
+      .nav-menu {
+        flex-wrap: wrap;
+      }
+    }
+
+    .site-footer {
+      background-color: #ffffff;
+      padding-top: 40px;
+      color: #333333;
+    }
+
+    .footer-container {
+      max-width: 1300px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    .footer-columns {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 30px;
+      margin-bottom: 40px;
+    }
+
+    .footer-col h3 {
+      font-size: 16px;
+      font-weight: bold;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+      color: #000;
+      position: relative;
+      padding-bottom: 8px;
+    }
+
+    .footer-col h3::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 45px;
+      height: 3px;
+      background-color: #ff0000;
+    }
+
+    .footer-col ul {
+      list-style: none;
+    }
+
+    .footer-col ul li {
+      margin-bottom: 8px;
+      border-bottom: 1px solid #f0f0f0;
+      padding-bottom: 6px;
+    }
+
+    .footer-col ul li:last-child {
+      border-bottom: none;
+    }
+
+    .footer-col ul li a {
+      color: #666666;
+      text-decoration: none;
+      font-size: 13px;
+      transition: color 0.2s;
+    }
+
+    .footer-col ul li a:hover {
+      color: #ff0000;
+    }
+
+    .footer-middle {
+      display: flex;
+      align-items: flex-start;
+      gap: 60px;
+      padding-bottom: 40px;
+    }
+
+    .footer-logo {
+      flex: 0 0 200px;
+    }
+
+    .footer-logo img {
+      width: 100%;
+      max-width: 180px;
+      height: auto;
+      display: block;
+    }
+
+    .footer-company-info {
+      flex: 1;
+      font-size: 13px;
+      line-height: 1.8;
+      color: #444444;
+    }
+
+    .footer-company-info h4 {
+      font-size: 14px;
+      font-weight: bold;
+      color: #000000;
+      margin-bottom: 4px;
+      text-transform: uppercase;
+    }
+
+    .footer-company-info p {
+      margin-bottom: 4px;
+    }
+
+    .social-icons {
+      display: flex;
+      gap: 12px;
+      margin-top: 15px;
+      color: #ff0000;
+    }
+
+    .copyright-bar {
+      background-color: #ff0000;
+    }
+
+    @media (max-width: 900px) {
+      .footer-columns {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .footer-middle {
+        flex-direction: column;
+        gap: 20px;
+      }
+    }
+
+    @media (max-width: 550px) {
+      .footer-columns {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .cta-collaborator {
+      background-color: #ff0000 !important;
+    }
+
+    .cta-collaborator input.form-control {
+      border-top-left-radius: 6px;
+      border-bottom-left-radius: 6px;
+    }
+
+    .cta-collaborator button.btn {
+      background-color: #ee4747;
+      border-top-right-radius: 6px;
+      border-bottom-right-radius: 6px;
+    }
+
+    .cta-collaborator button.btn:hover {
+      background-color: #ff5858;
+    }
+
+    .back-to-top-left {
+      position: fixed;
+      bottom: 25px;
+      left: 25px;
+      z-index: 9999;
+      width: 45px;
+      height: 45px;
+      background-color: #6c757d;
+      color: #ffffff;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+      font-size: 18px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+      transition: all 0.3s ease-in-out;
+    }
+
+    .back-to-top-left:hover {
+      background-color: #5a6268;
+      color: #ffffff;
+      transform: translateY(-3px);
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <div class="header-top">
+      <div class="logo">
+        <a href="#">
+          <img src="images/logo2.png" alt="Street Basket Logo">
+        </a>
+      </div>
+      <div class="search-box">
+        <input type="text" placeholder="Tìm kiếm sản phẩm, thương hiệu...">
+        <button type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
+      </div>
+      <div class="cart-action">
+        <a href="#" class="d-flex align-items-center text-decoration-none gap-2">
+          <img src="images/giỏ hàng.svg" alt="Giỏ hàng" style="width: 28px; height: 28px;">
+          <span class="fw-bold text-dark">Giỏ hàng</span>
+        </a>
+      </div>
+    </div>
+    <nav class="navbar navbar-expand-lg p-3">
+      <div class="container">
+        <a class="navbar-brand text-white fs-1 fw-bold" href="#"></a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+          aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav me-auto">
+            <li class="nav-item">
+              <a class="nav-link active text-white fs-5 px-3" aria-current="page" href="index.html">Trang chủ</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link text-white fs-5 px-3" href="#">Sale</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link text-white fs-5 px-3" href="#">Yêu thích</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link text-white fs-5 px-3" href="#">Liên hệ</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active text-white fs-5 px-3" href="#">Về chúng tôi</a>
+            </li>
+          </ul>
+          <div class="user-actions ms-auto">
+            <a href="login.html"
+              class="btn-auth text-white text-decoration-none px-3 py-2 border rounded d-flex align-items-center gap-2">
+              <i class="fa-regular fa-user"></i>
+              <span>Đăng Nhập / Đăng Ký</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </nav>
+  </header>
+  <main>
+
+    <body class="bg-light">
+
+      <div class="container my-5 bg-white p-4 rounded shadow-sm">
+        <div class="row g-4">
+          <!-- Cột hình ảnh sản phẩm -->
+          <div class="col-lg-6">
+            <div class="product-img-main mb-3 position-relative text-center bg-light p-3">
+              <img src="images/mainpic.webp" alt="Giày bóng rổ" class="img-fluid"
+                style="max-height: 400px; object-fit: contain;">
+            </div>
+            <!-- Danh sách ảnh thu nhỏ (thumbnails) -->
+            <div class="row g-2">
+              <div class="col-3">
+                <div class="product-thumbnail active p-1 text-center"><img src="images/anh01.webp" class="img-fluid rounded"
+                    alt="..."></div>
+              </div>
+              <div class="col-3">
+                <div class="product-thumbnail p-1 text-center"><img src="images/anh02.webp" class="img-fluid rounded"
+                    alt="..."></div>
+              </div>
+              <div class="col-3">
+                <div class="product-thumbnail p-1 text-center"><img src="images/anh03.webp" class="img-fluid rounded"
+                    alt="..."></div>
+              </div>
+              <div class="col-3">
+                <div class="product-thumbnail p-1 text-center"><img src="images/anh04.webp" class="img-fluid rounded"
+                    alt="..."></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Cột thông tin sản phẩm & đặt mua -->
+          <div class="col-lg-6">
+            <h2 class="h4 fw-bold mb-2">Giày chạy bộ nữ PEAK TAICHI Second Breath 3.0 ET59848H</h2>
+
+            <!-- Giá sản phẩm -->
+            <div class="mb-3">
+              <span class="fs-3 fw-bold text-danger me-2">2,151,000đ</span>
+              <span class="text-muted text-decoration-line-through">2,390,000đ</span>
+              <span class="badge badge-discount ms-2">-10%</span>
+            </div>
+            <div class="text-danger fw-semibold mb-3">
+              Tiết kiệm: 239,000₫
+            </div>
+
+            <!-- Mô tả ngắn -->
+            <ul class="text-secondary small mb-3 ps-3">
+              <li>Thiết kế năng động với phối màu hồng baby - trắng mát mắt</li>
+              <li>Đế cao su bám sân đa hướng</li>
+              <li>Thân giày thoáng khí, đệm EVA êm ái hỗ trợ bật nhảy linh hoạt</li>
+              <li>Phù hợp cho cả thi đấu lẫn phong cách lifestyle hàng ngày.</li>
+            </ul>
+
+            <a href="#" class="text-decoration-none small text-primary d-inline-block mb-3">Hướng dẫn chọn size</a>
+
+            <div class="mb-3">
+              <label class="form-label fw-bold small">Size</label>
+              <div class="d-flex gap-2">
+                <button type="button" class="btn btn-outline-dark size-btn btn-sm">40</button>
+                <button type="button" class="btn btn-outline-dark size-btn btn-sm">41</button>
+                <button type="button" class="btn btn-outline-dark size-btn btn-sm">42</button>
+                <button type="button" class="btn btn-outline-dark size-btn btn-sm">43</button>
+                <button type="button" class="btn btn-outline-dark size-btn btn-sm">44</button>
+                <button type="button" class="btn btn-outline-dark size-btn btn-sm">45</button>
+              </div>
+            </div>
+
+            <div class="row g-2 mb-4">
+              <div class="col-3">
+                <div class="input-group">
+                  <button class="btn btn-outline-secondary" type="button">-</button>
+                  <input type="text" class="form-control text-center p-1" value="1">
+                  <button class="btn btn-outline-secondary" type="button">+</button>
+                </div>
+              </div>
+              <div class="col-9">
+                <button class="btn w-100 h-100 fw-bold" style="border-color: #ff0000; color: #ff0000;">Thêm vào giỏ
+                  hàng</button>
+              </div>
+            </div>
+
+            <div class="d-grid mb-3">
+              <button class="btn btn-danger text-uppercase fw-bold py-2" style="background-color: #ff0000;">
+                Mua ngay <br>
+                <span class="small fw-normal" style=" font-size: 0.75rem;">Giao hàng toàn quốc</span>
+              </button>
+            </div>
+
+            <div class="row g-2 mb-4">
+              <div class="col-6">
+                <a href="#"
+                  class="btn btn-primary w-100 d-flex flex-column align-items-center justify-content-center py-2 text-decoration-none text-white">
+                  <span><i class="fa-solid fa-comment-sms"></i> Chat Zalo</span>
+                  <small style="font-size: 0.7rem;">Giải đáp và hỗ trợ ngay tức thì</small>
+                </a>
+              </div>
+              <div class="col-6">
+                <a href="#"
+                  class="btn btn-primary w-100 d-flex flex-column align-items-center justify-content-center py-2 text-decoration-none text-white">
+                  <span><i class="fa-solid fa-phone"></i> Gọi tư vấn</span>
+                  <small style="font-size: 0.7rem;">Giải đáp và hỗ trợ ngay tức thì</small>
+                </a>
+              </div>
+            </div>
+
+            <div class="card border-primary mb-3">
+              <div class="card-header bg-primary text-white text-center fw-bold small py-2">
+                <i class="fa-solid fa-gift"></i> KHUYẾN MÃI - ƯU ĐÃI
+              </div>
+              <div class="card-body small text-secondary">
+                <p class="mb-2">• Giá bán trên Website luôn rẻ hơn các sàn thương mại điện tử như: Shopee, Tiktok.</p>
+                <p class="mb-2">• Đơn hàng bóng rổ được tặng thêm bơm mini và kim bơm (không áp dụng sản phẩm giảm giá
+                  sâu).</p>
+                <p class="mb-0">• Giao hàng siêu tốc từ 1 - 4 giờ (chỉ áp dụng khu vực nội thành).</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="mt-5 pt-4 border-top">
+          <ul class="nav nav-tabs justify-content-center mb-4" id="productDetailTabs" role="tablist">
+            <li class="nav-item" role="presentation">
+              <button class="nav-link active fw-bold text-secondary" id="desc-tab" data-bs-toggle="tab"
+                data-bs-target="#desc-pane" type="button" role="tab" aria-controls="desc-pane" aria-selected="true">
+                Mô tả sản phẩm
+              </button>
+            </li>
+            <li class="nav-item" role="presentation">
+              <button class="nav-link fw-bold text-secondary" id="shipping-tab" data-bs-toggle="tab"
+                data-bs-target="#shipping-pane" type="button" role="tab" aria-controls="shipping-pane"
+                aria-selected="false">
+                Chính Sách Giao Hàng
+              </button>
+            </li>
+            <li class="nav-item" role="presentation">
+              <button class="nav-link fw-bold text-secondary" id="return-tab" data-bs-toggle="tab"
+                data-bs-target="#return-pane" type="button" role="tab" aria-controls="return-pane"
+                aria-selected="false">
+                Chính Sách Đổi Trả & Bảo Hành
+              </button>
+            </li>
+          </ul>
+
+          <div class="tab-content text-secondary small lh-lg px-lg-5" id="productDetailTabsContent">
+
+            <div class="tab-pane fade show active" id="desc-pane" role="tabpanel" aria-labelledby="desc-tab"
+              tabindex="0">
+              <p>PEAK Taichi Second Breath 3.0 được phát triển dành cho nhiều hình thức chạy luyện tập, từ chạy tốc độ,
+                chạy chậm đến các buổi chạy hàng ngày. Phiên bản mới tập trung vào khả năng phản hồi nhanh, chuyển tiếp
+                mượt mà, giảm chấn ổn định và hỗ trợ chạy trong các bài chạy dài.</p>
+
+              <h6 class="fw-bold text-dark mt-3">Đế giữa PEAK Taichi - Đệm êm, phản hồi nhanh</h6>
+              <p>Ứng dụng công nghệ PEAK Taichi với cấu trúc đệm có độ đàn hồi cao, giúp tăng khả năng phản hồi năng
+                lượng khi bàn chân tiếp đất và chuyển sang bước chạy tiếp theo. Đế giữa hỗ trợ hấp thụ lực tác động,
+                đồng thời tạo cảm giác bật nhảy và chuyển tiếp nhanh, phù hợp với nhiều nhịp độ chạy.</p>
+
+              <h6 class="fw-bold text-dark mt-3">Thiết kế đế giữa được tinh chỉnh với nhiều thay đổi giúp tối ưu hiệu
+                suất chuyển động:</h6>
+              <ul class="mb-3">
+                <li>Độ cong mũi giày tăng 2,5 mm - hỗ trợ chuyển động tiến về phía tốt hơn, tăng cảm giác thúc đẩy trong
+                  từng bước chạy.</li>
+                <li>Chiều cao thành đế khu vực phía trước bàn chân giảm 15 mm - tạo không gian duỗi bàn chân lớn hơn,
+                  tăng phản hồi lực đẩy ở phần trước bàn chân.</li>
+                <li>Cấu trúc thành đế định hướng dòng chuyển động - hỗ trợ giải phóng áp lực khi đế tiếp xúc và biến
+                  dạng dưới tác động của mặt đất, mang lại cảm giác chuyển tiếp tự nhiên và hạn chế cảm giác nặng chân.
+                </li>
+              </ul>
+
+              <h6 class="fw-bold text-dark mt-3">Cấu trúc ổn định</h6>
+              <p>Cấu trúc đế được thiết kế để cân bằng giữa khả năng giảm chấn và độ ổn định, đặc biệt ở khu vực gót
+                chân. Khi tiếp đất bằng gót, giữa bàn chân hoặc toàn bàn chân, giày hỗ trợ phân bổ lực ổn định, giúp
+                bước chạy vững vàng hơn.</p>
+
+              <h6 class="fw-bold text-dark mt-3">Hỗ trợ chạy dài và chạy phục hồi</h6>
+              <p>Khả năng giảm chấn và ổn định được tối ưu cho những buổi chạy đường dài, chạy aerobic và chạy phục hồi,
+                giúp duy trì cảm giác thoải mái khi vận động trong thời gian dài.</p>
+
+              <h6 class="fw-bold text-dark mt-3">Phù hợp nhiều nhu cầu chạy</h6>
+              <ul class="mb-3">
+                <li>Chạy tốc độ - phản hồi nhanh, hỗ trợ tăng tốc.</li>
+                <li>Chạy biến tốc, chạy theo nhịp - hỗ trợ chuyển đổi nhịp chạy linh hoạt.</li>
+                <li>Chạy chậm - đệm êm, giảm cảm giác nặng chân.</li>
+                <li>Chạy hàng ngày - cân bằng giữa êm ái, ổn định và khả năng phản hồi.</li>
+                <li>Chạy dài, chạy phục hồi - tăng cường giảm chấn và ổn định trong suốt hành trình.</li>
+              </ul>
+
+              <p>PEAK Taichi Second Breath 3.0 - Một đôi giày, đa dạng bài chạy.<br>
+                Phản hồi nhanh - chuyển tiếp mượt - đệm êm - ổn định bền bỉ.</p>
+
+              <hr class="my-4">
+              <p class="mb-1"><strong>Công ty nhập khẩu & phân phối:</strong></p>
+              <p class="mb-1">CÔNG TY CỔ PHẦN THỜI TRANG ALZADO</p>
+              <p class="mb-1">MST: 0107773034</p>
+              <p class="mb-0">Địa chỉ ĐKKD: Số 17, ngách 158/32, phố Nguyễn Sơn, phường Bồ Đề, quận Long Biên, Hà Nội
+              </p>
+            </div>
+
+            <div class="tab-pane fade" id="shipping-pane" role="tabpanel" aria-labelledby="shipping-tab" tabindex="0">
+              <h6 class="fw-bold text-dark mb-2">I. Các phương thức giao hàng:</h6>
+              <p class="mb-1">– Khách hàng mua trực tiếp hàng tại cửa hàng của chúng tôi</p>
+              <p class="mb-3">– Ship hàng qua các đơn vị vận chuyển</p>
+
+              <h6 class="fw-bold text-dark mb-2">II. Thời hạn ước tính cho việc giao hang:</h6>
+              <p class="mb-1"><strong>* Đối với khu vực Hà Nội:</strong> 1-2 ngày làm việc (không tính ngày lễ, Tết)</p>
+              <p class="mb-3"><strong>* Đối với các khu vực khác:</strong> 3-4 ngày làm việc (không tính ngày lễ, Tết)
+              </p>
+
+              <h6 class="fw-bold text-dark mb-2">III. Các giới hạn về mặt địa lý cho việc giao hàng</h6>
+              <p class="mb-3">Riêng khách tỉnh có nhu cầu mua số lượng lớn hoặc khách buôn sỉ nếu có nhu cầu mua sản
+                phẩm, chúng tôi sẽ nhờ dịch vụ giao nhận của các công ty vận chuyển và phí sẽ được tính theo phí của các
+                đơn vị cung cấp dịch vụ vận chuyển hoặc theo thoả thuận hợp đồng giữa 2 bên.</p>
+
+              <h6 class="fw-bold text-dark mb-2">IV. Phân định trách nhiệm của thương nhân, tổ chức cung ứng dịch vụ
+                logistics về cung cấp chứng từ hàng hóa trong quá trình giao nhận:</h6>
+              <p class="mb-1">- Bên giao nhận có trách nhiệm cung cấp chứng từ hàng hoá trong quá trình giao nhận.</p>
+              <p class="mb-1">- Bên vận chuyển có quyền và trách nhiệm cung cấp hóa đơn cho cơ quan quản lý nhà nước khi
+                có yêu cầu.</p>
+              <p class="mb-1">- Đơn vị vận chuyển sẽ chịu trách nhiệm vận chuyển hàng hóa theo nguyên tắc “nguyên đai,
+                nguyên kiện”.</p>
+              <p class="mb-2">Trên bao bì tất cả các đơn hàng đều có thông tin:</p>
+              <ul class="mb-3">
+                <li>Thông tin Người nhận, bao gồm: Tên người nhận, số điện thoại và địa chỉ người nhận</li>
+                <li>Mã vận đơn của đơn hàng</li>
+                <li>Để đảm bảo an toàn cho hàng hóa, <a href="#" class="text-decoration-none">peaksport.vn</a> sẽ gửi
+                  kèm hóa đơn</li>
+                <li>Hóa đơn là căn cứ hỗ trợ quá trình xử lý khiếu nại như: xác định giá trị thị trường của hàng hóa,
+                  đảm bảo hàng hóa lưu thông hợp lệ v.v..</li>
+              </ul>
+
+              <h6 class="fw-bold text-dark mb-2">V. Trách nhiệm về trường hợp hàng bị hư hỏng do quá trình vận chuyển
+              </h6>
+              <p class="mb-1">Về việc cung cấp chứng từ hàng hóa trong quá trình giao nhận.</p>
+              <p class="mb-1">Đối với hàng hóa bị hư hỏng do quá trình vận chuyển dù là đơn hàng do chính cửa hàng vận
+                chuyển hay do bên thứ 3 vận chuyển thì chúng tôi sẽ là bên đứng ra chịu trách nhiệm giải quyết vấn đề
+                cho khách hàng.</p>
+              <p class="mb-3">Khách hàng có quyền từ chối nhận sản phẩm và yêu cầu đổi trả theo quy định “đổi trả hoàn
+                phí” còn mọi vấn đề phát sinh chúng tôi sẽ làm việc lại với đối tác vận chuyển để giải quyết đền bù cho
+                đơn hàng theo thoả thuận hợp tác giữa công ty với đối tác thứ 3 cung cấp dịch vụ vận chuyển.</p>
+
+              <p class="fw-semibold text-dark">Lưu ý: Trường hợp phát sinh chậm trễ trong việc giao hàng chúng tôi sẽ
+                thông tin kịp thời cho khách hàng và khách hàng có thể lựa chọn giữa việc Hủy hoặc tiếp tục chờ hàng.
+              </p>
+            </div>
+
+            <div class="tab-pane fade" id="return-pane" role="tabpanel" aria-labelledby="return-tab" tabindex="0">
+              <h6 class="fw-bold text-dark mb-2">1. CHÍNH SÁCH BẢO HÀNH</h6>
+              <p class="mb-2">Quý khách vui lòng kiểm tra thật kỹ hàng hoá, đối chiếu sản phẩm với hoá đơn, phiếu bảo
+                hành (nếu có) trước khi nhận hàng nhằm đảm bảo quyền lợi của Quý khách trong việc Đổi/Trả hàng và Bảo
+                hành sản phẩm, đồng thời liên hệ với bộ phận HOTLINE để biết chi tiết về tình trạng bảo hành của sản
+                phẩm.</p>
+              <p class="fw-semibold mb-1">Điều kiện bảo hành:</p>
+              <p class="mb-1"><strong>1.1 Sản phẩm được bảo hành miễn phí nếu đảm bảo tất cả các điều kiện sau:</strong>
+              </p>
+              <p class="mb-1">– Sản phẩm ĐƯỢC BẢO HÀNH 6 THÁNG nếu phát hiện lỗi kỹ thuật do Nhà sản xuất. (Lỗi keo, lỗi
+                chỉ...)</p>
+              <p class="mb-2">– Thời hạn bảo hành còn hiệu lực, chúng tôi sẽ đối chiếu với số điện thoại quý khách mua
+                hàng.</p>
+              <p class="mb-1"><strong>1.2 Sản phẩm không được bảo hành hoặc sẽ phát sinh phí bảo hành nếu rơi vào một
+                  trong các trường hợp sau:</strong></p>
+              <p class="mb-1">– Sản phẩm không thỏa mãn một trong những điều kiện bảo hành ở mục 1.</p>
+              <p class="mb-1">– Khách hàng tự ý can thiệp sửa chữa sản phẩm</p>
+              <p class="mb-1">– Sản phẩm bị hư hỏng do lỗi người sử dụng, và lỗi hư hỏng không nằm trong phạm vi bảo
+                hành của Nhà sản xuất.</p>
+              <p class="mb-3">– Với trường hợp phát sinh phí bảo hành, nhân viên chăm sóc khách hàng của PEAK SPORT sẽ
+                tư vấn đầy đủ thông tin cho khách hàng trước khi tiến hành các thủ tục bảo hành</p>
+
+              <h6 class="fw-bold text-dark mb-2">2. ĐỔI/ TRẢ SẢN PHẨM</h6>
+              <p class="mb-1"><strong>2.1 ĐỔI DO LỖI CỦA PEAK SPORT VIETNAM</strong></p>
+              <p class="mb-1">Các trường hợp đổi hàng:</p>
+              <p class="mb-1">– Tình trạng sản phẩm khi nhận hàng:</p>
+              <p class="mb-1">+ Sản phẩm bị giao sai về số lượng, Sản phẩm không đúng với thông tin đã được đưa trên
+                website như hình ảnh, màu sắc, thành phần....</p>
+              <p class="mb-2">+ Sản phẩm bị hỏng do lỗi của nhà sản xuất (lỗi keo, lỗi chỉ v.v).</p>
+              <p class="mb-1">Điều kiện đổi hàng:</p>
+              <p class="mb-1">– Sản phẩm không bị dơ bẩn, không qua giặt là, không có mùi lạ, không có dấu hiệu đã qua
+                sử dụng.</p>
+              <p class="mb-3">– Khách hàng còn giữ xác nhận về việc đã mua hàng tại PEAK SPORT (số đơn hàng, hóa đơn mua
+                hàng, biên nhận giao hàng, sao kê của ngân hàng...)</p>
+
+              <p class="mb-1"><strong>2.2 ĐỔI HÀNG DO PHÍA KHÁCH HÀNG</strong></p>
+              <p class="mb-1">Các trường hợp đổi hàng: – Khách hàng thay đổi size, màu</p>
+              <p class="mb-1">Điều kiện đổi hàng:</p>
+              <p class="mb-1">– Sản phẩm giảm giá thấp hơn 50% (Không áp dụng đổi sản phẩm giảm giá từ 50% trở lên)</p>
+              <p class="mb-1">– Sản phẩm còn nguyên vẹn, đầy đủ nhãn mác, nguyên đai kiện.</p>
+              <p class="mb-1">– Sản phẩm không bị dơ bẩn, không qua giặt là, không có mùi lạ, không có dấu hiệu đã qua
+                sử dụng.</p>
+              <p class="mb-3">– Khách hàng còn giữ xác nhận về việc đã mua hàng tại PEAK SPORT (số đơn hàng, hóa đơn mua
+                hàng, biên nhận giao hàng, sao kê của ngân hàng...)</p>
+
+              <h6 class="fw-bold text-dark mb-2">3. THỜI GIAN ÁP DỤNG ĐỔI HÀNG</h6>
+              <p class="mb-1">– 15 ngày kể từ ngày mua hàng</p>
+              <p class="mb-1">– Khách hàng mua Online: thời điểm tính theo dấu biên nhận của bưu điện hay đơn vị chuyển
+                phát.</p>
+              <p class="mb-3">– Khách hàng mua tại gian hàng: thời điểm tính khách hàng mua hàng.</p>
+
+              <h6 class="fw-bold text-dark mb-2">CHI PHÍ ĐỔI HÀNG</h6>
+              <p class="mb-1">– Đối với các sản phẩm đổi lại do lỗi của PEAK SPORT, khách hàng sẽ được miễn phí đổi trả
+                và được giao hàng miễn phí tới địa chỉ ghi trên yêu cầu đổi trả.</p>
+              <p class="mb-0">– Đối với các sản phẩm đổi hàng do khách hàng thay đổi nhu cầu sử dụng, sẽ quy định áp
+                dụng phí đổi trả, khách hàng sẽ phải trả phí vận chuyển 2 chiều theo chính sách giao vận của PEAK SPORT
+                đối với bên đơn vị vận chuyển nếu muốn được gửi hàng mới đến địa chỉ yêu cầu.</p>
+            </div>
+
+          </div>
+        </div>
+        <div class="mt-5 pt-4 border-top">
+          <h4 class="fw-bold mb-4">Sản phẩm cùng phân khúc</h4>
+          <div class="row row-cols-2 row-cols-md-3 row-cols-lg-5 g-3">
+            
+            <div class="col">
+              <div class="card h-100 border-0 shadow-sm related-product-card">
+                <img src="images/giay01.webp" class="card-img-top" alt="...">
+                <div class="card-body p-2">
+                  <p class="card-text small text-truncate mb-1">Giày chạy bộ nam PEAK TAICHI Second Breath 3.0</p>
+                  <span class="fw-bold text-danger small">2.151.000đ</span><br>
+                  <span class="text-muted text-decoration-line-through" style="font-size: 0.75rem;">2.390.000đ</span>
+                </div>
+              </div>
+            </div>
+            
+            <div class="col">
+              <div class="card h-100 border-0 shadow-sm related-product-card">
+                <img src="images/giay02.webp" class="card-img-top" alt="...">
+                <div class="card-body p-2">
+                  <p class="card-text small text-truncate mb-1">Giày bóng rổ PEAK Basketball KID Taichi Wiggins 4.0</p>
+                  <span class="fw-bold text-danger small">1.791.000đ</span><br>
+                  <span class="text-muted text-decoration-line-through" style="font-size: 0.75rem;">1.990.000đ</span>
+                </div>
+              </div>
+            </div>
+            
+            <div class="col">
+              <div class="card h-100 border-0 shadow-sm related-product-card">
+                <img src="images/giay03.webp" class="card-img-top" alt="...">
+                <div class="card-body p-2">
+                  <p class="card-text small text-truncate mb-1">Giày bóng rổ PEAK Basketball KID Taichi Bullfighting</p>
+                  <span class="fw-bold text-danger small">1.611.000đ</span><br>
+                  <span class="text-muted text-decoration-line-through" style="font-size: 0.75rem;">1.790.000đ</span>
+                </div>
+              </div>
+            </div>
+            
+            <div class="col">
+              <div class="card h-100 border-0 shadow-sm related-product-card">
+                <img src="images/giay04.webp" class="card-img-top" alt="...">
+                <div class="card-body p-2">
+                  <p class="card-text small text-truncate mb-1">Giày bóng rổ PEAK Basketball KID EK59430A</p>
+                  <span class="fw-bold text-danger small">1.149.000đ</span><br>
+                  <span class="text-muted text-decoration-line-through" style="font-size: 0.75rem;">1.590.000đ</span>
+                </div>
+              </div>
+            </div>
+            
+            <div class="col">
+              <div class="card h-100 border-0 shadow-sm related-product-card">
+                <img src="images/giay05.webp" class="card-img-top" alt="...">
+                <div class="card-body p-2">
+                  <p class="card-text small text-truncate mb-1">Giày bóng rổ PEAK 3D Basketball KID Taichi</p>
+                  <span class="fw-bold text-danger small">1.971.000đ</span><br>
+                  <span class="text-muted text-decoration-line-through" style="font-size: 0.75rem;">2.190.000đ</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+  </main>
+  <section class="cta-collaborator py-4 bg-primary text-white text-center">
+    <div class="container">
+      <h4 class="fw-bold mb-3">ĐĂNG KÝ ĐỂ NHẬN ĐƯỢC THÔNG TIN MỚI NHẤT TỪ CỬA HÀNG</h4>
+      <div class="row justify-content-center">
+        <div class="col-md-6">
+          <form class="input-group">
+            <input type="tel" class="form-control py-2 border-0 shadow-none"
+              placeholder="Nhập số điện thoại hoặc zalo của bạn">
+            <button class="btn btn-white text-white shadow btn-outline-light px-4 fw-bold" type="submit">GỬI</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+  <a href="#" id="backToTopBtn" class="back-to-top-left" title="Lên đầu trang">
+    <i class="fa-solid fa-arrow-rotate-left"></i>
+  </a>
+  <footer class="site-footer">
+    <div class="footer-container">
+      <div class="footer-columns">
+        <div class="footer-col">
+          <h3>VỀ STREET BASKET</h3>
+          <ul>
+            <li><a href="#">Giới thiệu</a></li>
+            <li><a href="#">Hệ thống cửa hàng</a></li>
+            <li><a href="#">Liên hệ</a></li>
+            <li><a href="#">Founder</a></li>
+            <li><a href="#">Author</a></li>
+            <li><a href="#">Tin tức</a></li>
+            <li><a href="#">Tuyển dụng</a></li>
+            <li><a href="#">Sitemap</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h3>HƯỚNG DẪN MUA HÀNG</h3>
+          <ul>
+            <li><a href="#">Hướng dẫn thanh toán</a></li>
+            <li><a href="#">Hướng dẫn mua hàng online</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h3>CHÍNH SÁCH CHUNG</h3>
+          <ul>
+            <li><a href="#">Chính sách dữ liệu</a></li>
+            <li><a href="#">Chính sách bảo mật</a></li>
+            <li><a href="#">Chính sách kinh doanh</a></li>
+            <li><a href="#">Chính sách vận chuyển</a></li>
+            <li><a href="#">Chính sách bảo hành</a></li>
+            <li><a href="#">Chính sách đổi trả</a></li>
+            <li><a href="#">Chính sách kiểm hàng</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h3>SẢN PHẨM NỔI BẬT</h3>
+          <ul>
+            <li><a href="#">Quả bóng rổ</a></li>
+            <li><a href="#">Giày bóng rổ</a></li>
+            <li><a href="#">Quần áo bóng rổ</a></li>
+            <li><a href="#">Quần áo bóng rổ nữ</a></li>
+            <li><a href="#">Áo phông bóng rổ</a></li>
+            <li><a href="#">Áo ba lỗ bóng rổ</a></li>
+            <li><a href="#">Giày bóng rổ nữ</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-middle">
+        <div class="footer-logo">
+          <img src="images/logo1.png" alt="Street Basket Logo">
+        </div>
+
+        <div class="footer-company-info">
+          <h4>CÔNG TY TNHH MỘT THÀNH VIÊN STREET BASKET</h4>
+          <p>Cấp ngày: 09/09/2026 tại Thành phố Đà Nẵng</p>
+          <p>Trụ sở: Phường Hòa Xuân, Thành phố Đà Nẵng</p>
+
+          <h4 style="margin-top: 10px;">Thương hiệu Street Basket</h4>
+          <p>Email: ngdinhkhoinguyen9911@gmail.com</p>
+          <p>Tel: 0931992011</p>
+          <div class="social-icons">
+            <i class="bi bi-facebook me-3 fs-5"></i>
+            <i class="bi bi-youtube me-3 fs-5"></i>
+            <i class="bi bi-instagram me-3 fs-5"></i>
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <div class="copyright-bar text-center text-white py-3">
+      © Sản phẩm cuối khóa của học viên Nguyễn Đình Khôi Nguyên.
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+    crossorigin="anonymous"></script>
+  <script>
+    document.getElementById('backToTopBtn').addEventListener('click', function (e) {
+      e.preventDefault();
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
+    });
+  </script>
+</body>
+
+</html>
